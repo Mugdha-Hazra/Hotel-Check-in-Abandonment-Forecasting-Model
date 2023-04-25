@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ML Model Input Form</title>
+    <style>
+        /* Style for the page background */
+        
+        body {
+            background-color: #250236;
+            font-family: Arial, Helvetica, sans-serif;
+            /* font-family: 'Roboto', sans-serif; */
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        strong {
+            font-weight: bold;
+        }
+        /* Set a good font type */
+        /* Style for the form container */
+        
+        .form-container {
+            width: 70%;
+            margin: auto;
+            padding: 40px;
+            background-color: #d9b3ff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            /*  margin-top: 100px; */
+            margin-top: 10%;
+            margin-bottom: 10%;
+        }
+        /* Style for the form header */
+        
+        h1 {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 40px;
+            color: #42275a;
+            text-shadow: 2px 2px 5px #ccc;
+            font-family: cursive;
+        }
+        /* add animation to the form header */
+        
+        h1 {
+            animation: animate 2s ease-in-out;
+        }
+        
+        .box {
+            width: 50px;
+            height: 50px;
+            background-color: blue;
+            transform: rotate(0deg);
+            transition: transform 1s ease-in-out;
+        }
+        
+        .box:hover {
+            transform: rotate(90deg);
+        }
+        
+        .element {
+            animation: pulse 2s infinite;
+        }
+        
+        .button:hover {
+            background-color: red;
+        }
+        /* add animation to the form header */
+        
+        @keyframes animate {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Style for the form */
+        
+        form {
+            width: auto;
+            margin: auto;
+            /* margin-top: 20px; */
+            /* set the form to the middle of the page */
+        }
+        /* Style for the form fields */
+        
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 4px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            background-color: #e6ccff;
+            font-size: 16px;
+            color: #42275a;
+            border: #f00;
+        }
+        /* Style for the form fields */
+        
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 4px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            background-color: #e6ccff;
+            font-size: 16px;
+            color: #42275a;
+            border: #f00;
+        }
+        
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 5px #42275a;
+        }
+        /* Style for the form label */
+        
+        label {
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            display: block;
+            color: #42275a;
+            text-shadow: 1px 1px 3px #ccc;
+            text-shadow: #250236;
+            font-family: cursive;
+            size: 0cap;
+            text-indent: 0%;
+        }
+        /* Style for the form submit button */
+        /* Style for the form submit button and set it to the middle of the form */
+        
+        input[type="submit"] {
+            background-color: #42275a;
+            color: #fff;
+            padding: 16px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+            font-size: 16px;
+            transition: all 0.3s ease-in-out;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            margin-right: 90px;
+            margin-left: 20px;
+            font-family: cursive;
+            size: 0cap;
+            text-indent: 0%;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #6b4e82;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        /* Style for the form error message */
+        
+        .error-message {
+            color: #f00;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h1>ML Model Input Form</h1>
+        <form method="POST" action="/process_form">
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" required>
+
+            <label for="lead_time">Lead Time:</label>
+            <input type="number" id="lead_time" name="lead_time" required>
+
+            <label for="prev_canc">Previous Cancellations:</label>
+            <input type="number" id="prev_canc" name="previous_cancellations" required>
+
+            <label for="prev_book_not_cancel">Previous Bookings Not Cancelled:</label>
+
+            <input type="number" id="prev_book_not_cancel" name="previous_bookings_not_canceled" required>
+
+            <label for="booking_changes">Booking Changes:</label>
+            <input type="number" id="booking_changes" name="booking_changes" required>
+
+            <label for="days_in_wait_list">Days in Waiting List:</label>
+            <input type="number" id="days_in_wait_list" name="days_in_waiting_list" required>
+
+            <label for="adr">ADR:</label>
+            <input type="number" id="adr" name="adr" required>
+
+            <label for="parking_spaces">Required Car Parking Spaces:</label>
+            <input type="number" id="parking_spaces" name="required_car_parking_spaces" required>
+
+            <label for="special_req">Total of Special Requests:</label>
+            <input type="number" id="special_req" name="total_of_special_requests" required>
+
+            <label for="total_cust">Total Customer:</label>
+            <input type="number" id="total_cust" name="total_customer" required>
+
+            <label for="total_nights">Total Nights:</label>
+            <input type="number" id="total_nights" name="total_nights" required>
+
+            <label for="deposit_given">Deposit Given:</label>
+            <input type="number" id="deposit_given" name="deposit_given" required>
+
+            <!-- /* put the submot button at the middle of the form */ -->
+            <div style="text-align: center;">
+                <input type="submit" value="Submit">
+                <!-- <input type="submit" value="Submit"> -->
+
+        </form>
+        </div>

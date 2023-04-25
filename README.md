@@ -1,6 +1,6 @@
 # Hotel-Check-in-Abandonment-Forecasting-Model
 Hotel Check-in Abandonment Forecasting Model predicts if a guest would cancel a reservation, hotels could contact guests that most likely to cancel to confirm more efficiently and to resell the room to optimize revenues.
-## Steps Involved :
+## Deep dive in ML Model :
 **Data Loading and Reading:** In this step, we loaded the dataset into the environment and read the data using Python's Pandas library.
 
 **Data Cleaning and Preprocessing:** We removed missing values, duplicates, and outliers from the dataset. We also performed data imputation for missing values using different techniques like mean imputation, mode imputation, and regression imputation. Additionally, we scaled the numerical variables using standard scaling to ensure that all variables have a similar scale. Furthermore, we converted categorical variables into numerical variables using one-hot encoding.

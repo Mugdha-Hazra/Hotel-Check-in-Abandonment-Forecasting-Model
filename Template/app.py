@@ -3,43 +3,67 @@ import pickle
 import numpy as np
 
 # load the saved model
-model = pickle.load(open('saved_model.pkl', 'rb'))
+model = pickle.load(open("saved_model.pkl", "rb"))
 
 app = Flask(__name__)
 
-@app.route('/')
-def home():
-    return render_template('home.html')
 
-@app.route('/predict', methods=['POST'])
+@app.route("/")
+def home():
+    return render_template("home.html")
+
+
+@app.route("/predict", methods=["POST"])
 def predict():
     # get the form data from the request
-    country = request.form['country']
-    lead_time = int(request.form['lead_time'])
-    previous_cancellations = int(request.form['previous_cancellations'])
-    previous_bookings_not_canceled = int(request.form['previous_bookings_not_canceled'])
-    booking_changes = int(request.form['booking_changes'])
-    days_in_waiting_list = int(request.form['days_in_waiting_list'])
-    adr = float(request.form['adr'])
-    required_car_parking_spaces = int(request.form['required_car_parking_spaces'])
-    total_of_special_requests = int(request.form['total_of_special_requests'])
-    total_customer = int(request.form['total_customer'])
-    total_nights = int(request.form['total_nights'])
-    deposit_given = float(request.form['deposit_given'])
-    
+    country = request.form["country"]
+    lead_time = int(request.form["lead_time"])
+    previous_cancellations = int(request.form["previous_cancellations"])
+    previous_bookings_not_canceled = int(request.form["previous_bookings_not_canceled"])
+    booking_changes = int(request.form["booking_changes"])
+    days_in_waiting_list = int(request.form["days_in_waiting_list"])
+    try:
+        adr = float(request.form["adr"])
+    except ValueError:
+        # Handle the exception appropriately (e.g., return an error message)
+        return "Invalid input for adr parameter"
+    required_car_parking_spaces = int(request.form["required_car_parking_spaces"])
+    total_of_special_requests = int(request.form["total_of_special_requests"])
+    total_customer = int(request.form["total_customer"])
+    total_nights = int(request.form["total_nights"])
+    try:
+        deposit_given = float(request.form["deposit_given"])
+    except ValueError:
+        # Handle the exception appropriately (e.g., return an error message)
+        return "Invalid input for adr parameter"
     # create a numpy array with the form data
-    input_data = np.array([[lead_time, previous_cancellations, previous_bookings_not_canceled, booking_changes, 
-                            days_in_waiting_list, adr, required_car_parking_spaces, total_of_special_requests,
-                            total_customer, total_nights, deposit_given]])
-    
+    input_data = np.array(
+        [
+            [
+                lead_time,
+                previous_cancellations,
+                previous_bookings_not_canceled,
+                booking_changes,
+                days_in_waiting_list,
+                adr,
+                required_car_parking_spaces,
+                total_of_special_requests,
+                total_customer,
+                total_nights,
+                deposit_given,
+            ]
+        ]
+    )
+
     # make a prediction using the model
     prediction = model.predict(input_data)[0]
-    
+
     # return the prediction as a JSON response
-    response = {'prediction': int(prediction)}
+    response = {"prediction": int(prediction)}
     return jsonify(response)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     app.run(debug=True)
 
 # from flask import Flask, request, jsonify, render_template

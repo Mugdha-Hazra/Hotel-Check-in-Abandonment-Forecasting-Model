@@ -57,14 +57,18 @@ def predict():
 
     # make a prediction using the model
     prediction = model.predict(input_data)[0]
-
+    prediction = request.json.get('prediction')
+    
+    if not isinstance(prediction, int):
+        return jsonify({'error': 'Invalid input'}), 400
+        
     # return the prediction as a JSON response
-    response = {"prediction": int(prediction)}
+    response = {"prediction": prediction}
     return jsonify(response)
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
 
 # from flask import Flask, request, jsonify, render_template
 # import pickle
